@@ -11,6 +11,8 @@ learning_rate = 1e-3
 device = 'cuda' if torch.cuda.is_available() else 'cpu'  # NEW: Run on GPU if available
 eval_iters = 200
 n_embd = 32
+n_head = 4
+n_layer = 3
 # ------------
 
 torch.manual_seed(1337)
@@ -156,13 +158,8 @@ class BigramLanguageModel(nn.Module):
         self.position_embedding_table = nn.Embedding(block_size, n_embd)
 
         # Intersperse communication and feed forward many times
-        self.blocks = nn.Sequential(
-            Block(n_embd, n_head=4),
-            Block(n_embd, n_head=4),
-            Block(n_embd, n_head=4),
-            nn.LayerNorm(n_embd),
-        )
-
+        self.blocks = nn.Sequential(*[Block(n_embd, n_head=n_head) for _ in range(n_layer)])
+        self.ln_f = nn.LayerNorm(n_embd)  # final layer norm
         self.lm_head = nn.Linear(n_embd, vocab_size)
 
     def forward(self, idx, targets=None):
@@ -173,6 +170,7 @@ class BigramLanguageModel(nn.Module):
         pos_emb = self.position_embedding_table(torch.arange(T, device=device))  # positional embedding (T, C)
         x = tok_emb + pos_emb  # Now x holds both token identifies AND positions at which they occur  (B,T,C)
         x = self.blocks(x)  # (B,T,C)
+        x = self.ln_f(x)
         logits = self.lm_head(x)  # (B,T,vocab_size)
 
         if targets is None:
