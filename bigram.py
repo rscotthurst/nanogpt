@@ -135,10 +135,13 @@ class Block(nn.Module):
         head_size = n_embd // n_head
         self.sa = MultiHeadAttention(n_head, head_size)
         self.ffwd = FeedForward(n_embd)
+        self.ln1 = nn.LayerNorm(n_embd)
+        self.ln2 = nn.LayerNorm(n_embd)
 
     def forward(self, x):
-        x = x + self.sa(x)  # communication
-        x = x + self.ffwd(x)  # computation
+        # Both use layer norms created in __init__
+        x = x + self.sa(self.ln1(x))  # communication
+        x = x + self.ffwd(self.ln2(x))  # computation
 
         return x
 
@@ -157,6 +160,7 @@ class BigramLanguageModel(nn.Module):
             Block(n_embd, n_head=4),
             Block(n_embd, n_head=4),
             Block(n_embd, n_head=4),
+            nn.LayerNorm(n_embd),
         )
 
         self.lm_head = nn.Linear(n_embd, vocab_size)
