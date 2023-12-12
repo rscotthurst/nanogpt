@@ -3,16 +3,16 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 # Hyperparameters
-batch_size = 32  # how many independent sequences will we process in parallel?
-block_size = 8  # what is the maximum context length for predictions? ie here it's 256 pieces of context to predict the 257th
-max_iters = 5000
+batch_size = 64  # how many independent sequences will we process in parallel?
+block_size = 256  # what is the maximum context length for predictions? ie here it's 256 pieces of context to predict the 257th
+max_iters = 2500
 eval_interval = 500
-learning_rate = 1e-3
+learning_rate = 3e-4
 device = 'cuda' if torch.cuda.is_available() else 'cpu'  # Run on GPU if available
 eval_iters = 200
-n_embd = 32
-n_head = 4
-n_layer = 3
+n_embd = 384
+n_head = 6
+n_layer = 6
 dropout = 0.2  # 20% of intermediate calculations are dropped to zero (help reduce overfitting)
 # ------------
 
