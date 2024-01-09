@@ -26,6 +26,19 @@ I cannot be some night. Ay, farewell.
 - **`input.txt`:** The [raw complete works of Shakespeare](https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt) used as input to the model.
 - **`sentence_completion.ipynb`:** A prior attempt to build a sentence completer, it's fun to play around with but not super useful.
 
+## Commits
+Because building `bigram.py` was an iterative process, I tried to match up my commits with sections of the video to "freeze" my progress along the way.
+
+- **[Simplest bigram model, mostly replicates what is in Jupyter notebook but in script form](https://github.com/rscotthurst/nanogpt/commit/9fe29510bb480c21afc5715f867ffa4d7522a356)**: [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=2280s)
+- **[Implement single-headed self attention](https://github.com/rscotthurst/nanogpt/commit/38fd33f6e65c8ef5d2475b4b7ef49ab0f370796d)**: [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=4751s)
+- **[Implement multi-headed self attention](https://github.com/rscotthurst/nanogpt/commit/d54194da090c1f78c86b8c5ff9ab1d2b145a069a)**: [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=4751s)
+- **[Add a feedforward layer](https://github.com/rscotthurst/nanogpt/commit/009feeb3b69ac91a66dca9d35f4ddb2a4c33cdd1)**: [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=5065s)
+- **[Block optimization 1: add residual pathway](https://github.com/rscotthurst/nanogpt/commit/19f8a9125fbd74644e724a22f8a3b2284f480cd6)**: [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=5208s)
+- **[Block optimization 2: add layer norm](https://github.com/rscotthurst/nanogpt/commit/56576a1b49b647978741dadbfae6fa5f0ff3b0d2)**: [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=5571s)
+- **[Add dropout to reduce overfitting](https://github.com/rscotthurst/nanogpt/commit/73ec432e6c4d7120242164bf27ad17259825fae9)** [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=5869s)
+- **[Scale up hyperparams massively to run](https://github.com/rscotthurst/nanogpt/commit/85259b430440e80049304e5685e1a8dc6112fb5d)**: [video chapter](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=5869s)
+
+
 ## Running Full Model
 The notebook `gpt_dev.ipynb` should work fine on any computer. But `bigram.py` should be run with a GPU. I've been using a `ml.g4dn.2xlarge` instance to run it.
 
