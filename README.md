@@ -1,4 +1,4 @@
-# NanoGPT Implementation
+# NanoGPT Implementation - Generate Shakespeare
 Scott Hurst
 
 ## Introduction
