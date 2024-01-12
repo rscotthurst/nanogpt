@@ -1,0 +1,10 @@
+name: nanogpt
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - jupyterlab
+  - pytorch-cpu
+  - jupyterlab-git
+prefix: /Users/scotthurst/miniconda3/envs/nanogpt
